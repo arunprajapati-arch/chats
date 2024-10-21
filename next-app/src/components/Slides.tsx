@@ -4,6 +4,16 @@ import * as React from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
+
+interface Category {
+  name: string;
+  items: string[];
+}
+
+interface Props {
+  category: Category;
+}
 
 const categories = [
   {
@@ -45,7 +55,7 @@ export default function Slides() {
   )
 }
 
-function CategoryScroll({ category }: { category: { name: string; items: string[] } }) {
+function CategoryScroll({ category }: Props) {
   const scrollContainerRef = React.useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = React.useState(false)
   const [canScrollRight, setCanScrollRight] = React.useState(true)
@@ -84,11 +94,14 @@ function CategoryScroll({ category }: { category: { name: string; items: string[
           onScroll={checkScroll}
         >
           {category.items.map((item, index) => (
+            <Link href={`/chat?item=${encodeURIComponent(item)}`}>
             <Card key={index} className="w-[250px] h-[200px] flex-shrink-0">
               <CardContent className="p-4 flex flex-col justify-center items-center h-full">
                 <h3 className="font-semibold text-lg text-center">{item}</h3>
               </CardContent>
             </Card>
+            </Link>
+            
           ))}
         </div>
         {canScrollLeft && (
