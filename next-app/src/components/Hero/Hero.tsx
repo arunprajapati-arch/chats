@@ -6,14 +6,15 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import Cards from "@/components/Cards";
+import Cards from "@/components/Hero/Cards";
 import { useState } from "react";
 
+
 const data = [
-    { id: 1, title: 'Web3', content: 'Explore the decentralized web.' },
-    { id: 2, title: 'Programming', content: 'Discuss various programming languages and techniques.' },
-    { id: 3, title: 'Design', content: 'Share and critique design projects.' },
-    { id: 4, title: 'AI & ML', content: 'Dive into artificial intelligence and machine learning.' },
+    { id: 1, title: 'Web3', rooms: ['Room A', 'Room B'] },
+    { id: 2, title: 'Programming', rooms: ['Room C', 'Room D'] },
+    { id: 3, title: 'Design', rooms: ['Room E', 'Room F'] },
+    { id: 4, title: 'AI & ML', rooms: ['Room G', 'Room H'] },
 ];
 
 export default function Hero() {
@@ -29,19 +30,17 @@ export default function Hero() {
                 <div key={item.id} className={`dynamic-div ${openPopoverId === item.id ? 'pointer-events-auto' : ''}`}>
                     <Popover onOpenChange={(open) => handlePopoverOpenChange(open, item.id)}>
                         <PopoverTrigger>
-                            <Cards title={item.title} content={item.content} />
+                            <Cards title={item.title} content={`Rooms available: ${item.rooms.length}`} />
                         </PopoverTrigger>
-                        <PopoverContent className="w-80 pointer-events-auto">
+                        <PopoverContent className="w-80 h-auto overflow-x-auto pointer-events-auto">
+                            <h2 className="text-xl font-bold mb-2">{item.title} Rooms</h2>
                             <div className="space-y-4">
-                                <h2 className="text-xl font-bold mb-2">{item.title} Rooms</h2>
-                                <div className="flex items-center justify-between ">
-                                    <h3 >Room 1</h3>
-                                    <Button>Join</Button>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <h3 >Room 2</h3>
-                                    <Button>Join</Button>
-                                </div>
+                                {item.rooms.map((room, index) => (
+                                    <div key={index} className="flex items-center justify-between">
+                                        <h3>{room}</h3>
+                                        <Button>Join</Button>
+                                    </div>
+                                ))}
                             </div>
                         </PopoverContent>
                     </Popover>
