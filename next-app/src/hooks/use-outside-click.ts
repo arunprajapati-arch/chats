@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 
 export const useOutsideClick = (
   ref: React.RefObject<HTMLDivElement>,
-  callback: Function
+  callback: () => void
 ) => {
   useEffect(() => {
-    const listener = (event: any) => {
-      if (!ref.current || ref.current.contains(event.target)) {
-        return;
+    const listener = (event: MouseEvent | TouchEvent) => {
+      if (!ref.current || ref.current.contains(event.target as Node)) {
+        return; // Click was inside the ref, do nothing
       }
-      callback(event);
+      callback(); // Click was outside, call the callback
     };
 
     document.addEventListener("mousedown", listener);
