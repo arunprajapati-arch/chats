@@ -1,16 +1,16 @@
 import { Chat, Store, UserId } from "./Store";
 
 
-
 export interface Room {
     roomId: string;
     chats: Chat[]
 }
 
-export  class InMemoryStore implements Store {
-    private store : Map<string, Room>;
-    constructor(){
-        this.store = new Map<string, Room>();
+export class InMemoryStore implements Store {
+    private store: Map<string, Room>;
+
+    constructor() {
+        this.store = new Map<string, Room>()
     }
 
     initRoom(roomId: string) {
@@ -45,5 +45,6 @@ export  class InMemoryStore implements Store {
         return chat;
     }
 
-   
+    
+
 }
