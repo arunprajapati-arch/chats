@@ -10,7 +10,7 @@ export default function Home() {
   const session = useSession();
   return (
     <>
-     <UserDashboard/>
+    <Hero/>
    {/* <Navbar/>
     <Hero/>
     <div>
