@@ -1,3 +1,4 @@
+import React from "react";
 import {
     Card,
     CardContent,
@@ -6,6 +7,7 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
+import { motion } from "framer-motion";
 
   interface ItemProps {
     title: string;
@@ -14,6 +16,7 @@ import {
   }
 export default function Cards({title,content}:ItemProps){
     return(
+      <motion.div drag >
         <Card>
   <CardHeader>
     <CardTitle>{title}</CardTitle>
@@ -25,5 +28,7 @@ export default function Cards({title,content}:ItemProps){
   
 </Card>
 
+      </motion.div>
+        
     );
 }
