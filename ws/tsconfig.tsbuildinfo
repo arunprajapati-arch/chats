@@ -1,1 +1,1 @@
-{"root":["./src/UserManager.ts","./src/server.ts","./src/config/roomsConfig.ts","./src/messages/incomingMessages.ts","./src/messages/outgoingMessages.ts","./src/store/InMemoryStore.ts","./src/store/Store.ts"],"version":"5.6.3"}
+{"root":["./src/RoomManager.ts","./src/User.ts","./src/index.ts","./src/types.ts"],"version":"5.6.3"}
