@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const emailSchema = z
+export const usernameSchema = z
   .string({ message: "username is required" })
   .min(5, { message: "Must be 5 or more characters long" });
 
