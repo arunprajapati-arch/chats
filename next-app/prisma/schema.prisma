@@ -31,3 +31,4 @@ model Room {
   categoryId Int
   category   Category @relation("CategoryRooms", fields: [categoryId], references: [id])
 }
+
