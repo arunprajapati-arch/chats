@@ -1,11 +1,13 @@
 
 "use client"; 
+import ChatPage from '@/components/ChatPage/ChatPage';
+import Chat from '@/components/ChatPage/ChatPage';
 import { useSearchParams } from 'next/navigation';
 
 const ChatsPage = () => {
   const searchParams = useSearchParams();
-  const room = searchParams.get('room'); 
-
+  let room = searchParams.get('room'); 
+  room = "dfd"
   
   if (!room) {
     return <div>Loading...</div>; 
@@ -13,8 +15,7 @@ const ChatsPage = () => {
 
   return (
     <div>
-      <h1>Chat Room: {room}</h1>
-      {/* Additional chat-related components or logic */}
+      <ChatPage/>
     </div>
   );
 };
