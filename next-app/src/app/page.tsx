@@ -1,21 +1,27 @@
-"use client"
-
-
-
 import Hero from "@/components/Hero/Hero";
-import Navbar from "@/components/Navbar";
-import Component from "@/components/sign-in";
+import TestSignInComponent from "@/components/test-sign-in";
+import Component from "@/components/test-sign-in";
+import { Card } from "@/components/ui/card"
+
+
+
+
+
+
+
+
 
 
 export default function Home() {
-  
+
  
   return (
     <>
-      <Component/>
-    {/* <Navbar/>
-    <Hero/>
-     */}
+   
+   <div className="min-h-screen bg-background p-4 lg:p-8">
+      <Hero/>
+    </div>
+    {/* <TestSignInComponent/> */}
  
     
  

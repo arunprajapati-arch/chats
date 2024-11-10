@@ -21,10 +21,13 @@ function MessageList({ messages }: MessageListProps) {
     }
   }, [messages]);
 
+  console.log(messages);
+  
+
   return (
     <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar ">
         
-      {messages.map((msg, index) => (
+      { messages.map((msg, index) => (
         <div
           key={index}
           className={`flex items-center ${msg.isUser ? 'justify-end' : 'justify-start'} gap-2 `}

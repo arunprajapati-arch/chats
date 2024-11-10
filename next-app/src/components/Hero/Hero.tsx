@@ -1,14 +1,22 @@
 import React from 'react'
-import Background from './Background'
-import Foreground from './Foreground'
 
 
-function Hero() {
+import Leaderboard from './Leaderboard';
+import RoomCards from './RoomCards';
+
+
+
+async function Hero() {
+  
+  
+  
+  
   return (
-    <div className='relative w-full h-screen bg-zinc-800'>
-        <Background/>
-       <Foreground/>
-    </div>
+    <section className="grid lg:grid-cols-[1fr_300px] gap-12  rounded-lg border bg-card-foreground/5 p-8">
+              <RoomCards/>
+              <Leaderboard/>
+            </section>
+    
   )
 }
 
