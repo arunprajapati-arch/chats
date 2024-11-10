@@ -21,7 +21,7 @@ function MessageList({ messages }: MessageListProps) {
     }
   }, [messages]);
 
-  console.log(messages);
+
   
 
   return (

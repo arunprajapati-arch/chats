@@ -1,19 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import UserChat from '@/components/UserChat';
-import { useForm } from "react-hook-form"
-import { PlaceholdersAndVanishInput } from '../ui/placeholders-and-vanish-input';
+
 import { ChevronRightCircleIcon, Send } from 'lucide-react';
-import { Button } from '../ui/button';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+
+
 
 interface Message {
   text: string;
@@ -23,10 +13,30 @@ interface Message {
 
 function Chat() {
 
-    const placeholders = [
-        "Type your message...",
-       
-      ];
+  useEffect(() => {
+     const socket = new WebSocket("ws://172.25.190.64:3001");
+
+  
+    
+     socket.onopen = () => {
+      console.log('WebSocket connected');
+      socket.onmessage = (event) => {
+        console.log(event);
+        
+      }
+      // Sending a message to the server after connection
+      const data = {
+        type: "join",
+        payload: { roomId: "2",userId:"dfd" },
+      };
+      socket.send(JSON.stringify(data));
+    };
+  
+  }, []);
+
+  
+
+  
 
   const [input, setInput] = useState('');
   const [lastSent, setLastSent] = useState<number | null>(null);
