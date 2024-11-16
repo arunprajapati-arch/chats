@@ -17,6 +17,7 @@ import CustomCard from '@/components/Hero/CustomCard';
           title: true, 
           rooms: {
             select: {
+              id:true,
               name: true, // Only select the 'name' field for each room
             },
           }, 
@@ -49,6 +50,7 @@ import CustomCard from '@/components/Hero/CustomCard';
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {roomData?.name.map((room,index) => (
           <div key={index}  className=" ">
+            
             <CustomCard title={room.title} rooms={room.rooms}/>
           </div>
         ))}

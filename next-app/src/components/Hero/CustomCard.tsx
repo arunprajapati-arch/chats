@@ -17,6 +17,7 @@ import { Button } from '../ui/button';
 import Link from 'next/link';
 
 interface Room {
+  id:number
   name: string;
 }
 
@@ -52,7 +53,7 @@ function CustomCard({title,rooms}:CategoryProps) {
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="p-4 pt-0">
-                      <Link href={`/chat?room=${encodeURIComponent(room.name)}`}>
+                      <Link href={`/chat?room=${encodeURIComponent(room.id)}`}>
                       <Button className="w-full" onClick={() => console.log(`Joining ${room} in ${room.name}`)}>
                         Join Room
                       </Button>

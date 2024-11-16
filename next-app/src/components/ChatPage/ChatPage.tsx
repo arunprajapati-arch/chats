@@ -3,7 +3,11 @@ import Chat from './Chat'
 import Players from './Players'
 import RoomSelector from './RoomSelector'
 
-function ChatPage() {
+interface ChatPageProp{
+  roomId:string
+}
+
+function ChatPage({roomId}:ChatPageProp) {
   return (
     <div className="w-full h-screen p-6 border-red-400 border flex flex-col md:flex-row items-start justify-between gap-6">
    
@@ -13,7 +17,7 @@ function ChatPage() {
 
    
     <div className="h-full w-full md:w-2/3">
-        <Chat />
+        <Chat roomId={roomId} />
     </div>
 
     

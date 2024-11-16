@@ -6,16 +6,16 @@ import { useSearchParams } from 'next/navigation';
 
 const ChatsPage = () => {
   const searchParams = useSearchParams();
-  let room = searchParams.get('room'); 
-  room = "dfd"
+  const roomId = searchParams.get('room'); 
   
-  if (!room) {
+  
+  if (!roomId) {
     return <div>Loading...</div>; 
   }
 
   return (
     <div>
-      <ChatPage/>
+      <ChatPage roomId={roomId}/>
     </div>
   );
 };
