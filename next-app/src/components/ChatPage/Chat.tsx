@@ -13,15 +13,33 @@ interface Message {
 
 function Chat() {
 
+  const [input, setInput] = useState('');
+  const [lastSent, setLastSent] = useState<number | null>(null);
+  const [messages, setMessages] = useState<Message[]>([
+    { text: 'Hello!', time: '10:00 AM', isUser: false },
+    { text: 'Hi there!', time: '10:01 AM', isUser: true },
+    { text: 'How can I help you today?', time: '10:02 AM', isUser: false },
+  ]);
+
   useEffect(() => {
-     const socket = new WebSocket("ws://172.25.190.64:3001");
+     const socket = new WebSocket("ws://localhost:3001");
 
   
     
      socket.onopen = () => {
       console.log('WebSocket connected');
       socket.onmessage = (event) => {
-        console.log(event);
+        const parsedData = JSON.parse(event.data);
+        console.log(typeof(parsedData.payload.message));
+        const newMessage: Message = {
+          text: parsedData.payload.message,
+          time: new Date().toLocaleTimeString(),
+          isUser: false,
+        };
+        console.log(newMessage);
+        
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
+        
         
       }
       // Sending a message to the server after connection
@@ -31,6 +49,7 @@ function Chat() {
       };
       socket.send(JSON.stringify(data));
     };
+    
   
   }, []);
 
@@ -38,13 +57,7 @@ function Chat() {
 
   
 
-  const [input, setInput] = useState('');
-  const [lastSent, setLastSent] = useState<number | null>(null);
-  const [messages, setMessages] = useState<Message[]>([
-    { text: 'Hello!', time: '10:00 AM', isUser: false },
-    { text: 'Hi there!', time: '10:01 AM', isUser: true },
-    { text: 'How can I help you today?', time: '10:02 AM', isUser: false },
-  ]);
+
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
