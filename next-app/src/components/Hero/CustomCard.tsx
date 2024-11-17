@@ -1,6 +1,5 @@
 "use client"
 import React, { useState } from 'react'
-import { BackgroundGradient } from '../ui/background-gradient'
 
 import { ChevronRightCircle, Users } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
@@ -28,7 +27,7 @@ interface CategoryProps {
 
 function CustomCard({title,rooms}:CategoryProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  console.log(rooms);
+  
   
   return (
    <div>
@@ -54,7 +53,7 @@ function CustomCard({title,rooms}:CategoryProps) {
                     </CardHeader>
                     <CardContent className="p-4 pt-0">
                       <Link href={`/chat?room=${encodeURIComponent(room.id)}`}>
-                      <Button className="w-full" onClick={() => console.log(`Joining ${room} in ${room.name}`)}>
+                      <Button className="w-full" onClick={() => console.log(`${room.name}`)}>
                         Join Room
                       </Button>
                       </Link>

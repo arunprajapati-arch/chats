@@ -12,7 +12,7 @@ async function Hero() {
   
   
   return (
-    <section className="grid lg:grid-cols-[1fr_300px] gap-12  rounded-lg border bg-card-foreground/5 p-8">
+    <section className="min-h-[92vh] grid lg:grid-cols-[1fr_300px] gap-12  rounded-lg border bg-card-foreground/5 p-8">
               <RoomCards/>
               <Leaderboard/>
             </section>

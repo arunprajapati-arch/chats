@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useSocket } from '@/hooks/useSocket'; 
 import UserChat from '@/components/UserChat';
-import { useSession } from "next-auth/react";
 import { ChevronRightCircleIcon } from 'lucide-react';
 
 interface Message {
@@ -14,65 +14,37 @@ interface ChatPageProps {
 }
 
 function Chat({ roomId }: ChatPageProps) {
-  const { data: session } = useSession();
-  const [socketInstance, setSocketInstance] = useState<WebSocket | null>(null);
+  const socket = useSocket(roomId);
   const [input, setInput] = useState('');
   const [lastSent, setLastSent] = useState<number | null>(null);
-  const [messages, setMessages] = useState<Message[]>([
-    { text: 'Hello!', time: '10:00 AM', isUser: false },
-    { text: 'Hi there!', time: '10:01 AM', isUser: true },
-    { text: 'How can I help you today?', time: '10:02 AM', isUser: false },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
 
-  // Effect 1: Establish WebSocket connection and send join message
+
+  
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:3001");
+    if (!socket) return;
 
-    socket.onopen = () => {
-      console.log('WebSocket connected');
-      const wsData = {
-        type: "join",
-        payload: { roomId, userId: session?.user.name },
-      };
-      socket.send(JSON.stringify(wsData));
-    };
-
-    setSocketInstance(socket);
-
-    // Cleanup WebSocket connection when component unmounts
-    return () => {
-      if (socketInstance) {
-        socket.close();
-      }
-    };
-  }, [roomId, session?.user.name]);
-
-  // Effect 2: Handle incoming messages from the WebSocket server
-  useEffect(() => {
-    if (!socketInstance) return;
-
-    socketInstance.onmessage = (event) => {
+    socket.onmessage = (event) => {
       const parsedData = JSON.parse(event.data);
-      console.log(typeof(parsedData.payload.message));
-      const newMessage: Message = {
-        text: parsedData.payload.message,
-        time: new Date().toLocaleTimeString(),
-        isUser: false,
-      };
-      console.log(newMessage);
-
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
-    };
-
-    // Cleanup the onmessage handler when the component unmounts
-    return () => {
-      if (socketInstance) {
-        socketInstance.onmessage = null;
+      
+      if(parsedData.type === "chat") {
+        const newMessage: Message = {
+          text: parsedData.payload.message,
+          time: new Date().toLocaleTimeString(),
+          isUser: false,
+        };
+        
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
       }
+     
     };
-  }, [socketInstance]);
 
-  // Function to handle sending a message
+
+    return () => {
+      socket.onmessage = null;
+    };
+  }, [socket]);
+
   const handleSendMessage = () => {
     const now = Date.now();
 
@@ -81,7 +53,8 @@ function Chat({ roomId }: ChatPageProps) {
       return;
     }
 
-    if (input.trim()) {
+    if (input.trim() === '') return;
+    if(socket) {
       const newMessage: Message = {
         text: input,
         time: new Date().toLocaleTimeString(),
@@ -91,14 +64,10 @@ function Chat({ roomId }: ChatPageProps) {
       setLastSent(now);
       setInput('');
 
-      // Send the message to the WebSocket server
-      if (socketInstance) {
-        const wsData = {
-          type: "chat",
-          payload: { message: newMessage.text, roomId },
-        };
-        socketInstance.send(JSON.stringify(wsData));
-      }
+      socket.send(JSON.stringify({
+        type: 'chat',
+        payload: {roomId , message: newMessage.text},
+      }));
     }
   };
 

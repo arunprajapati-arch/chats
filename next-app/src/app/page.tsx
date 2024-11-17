@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
    
-   <div className="min-h-screen bg-background p-4 lg:p-8">
+   <div className="min-h-screen bg-background p-4 lg:p-8  ">
       <Hero/>
     </div>
     {/* <TestSignInComponent/> */}

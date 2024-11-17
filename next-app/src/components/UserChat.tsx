@@ -41,7 +41,7 @@ function MessageList({ messages }: MessageListProps) {
             <p>{msg.text}</p>
             
           </div>
-          {!msg.isUser && <span className="text-xs opacity-70">{msg.time}</span>}
+         <span className="text-xs opacity-70">{msg.time}</span>
         </div>
       ))}
       <div ref={messagesEndRef} />

@@ -1,11 +1,6 @@
 
 import React, { useState } from 'react'
 import client from "@/db"
-import { BackgroundGradient } from '../ui/background-gradient';
-import { Button } from '../ui/button';
-import { ChevronRightCircle, ChevronRightCircleIcon } from 'lucide-react';
-import {Card} from '@/components/ui/card';
-
 import CustomCard from '@/components/Hero/CustomCard';
 
  
@@ -18,7 +13,7 @@ import CustomCard from '@/components/Hero/CustomCard';
           rooms: {
             select: {
               id:true,
-              name: true, // Only select the 'name' field for each room
+              name: true, 
             },
           }, 
         },
