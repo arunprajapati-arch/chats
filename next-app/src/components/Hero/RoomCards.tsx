@@ -18,7 +18,7 @@ import CustomCard from '@/components/Hero/CustomCard';
           }, 
         },
       });
-      console.log(JSON.stringify(roomTitles, null, 2));
+      // console.log(JSON.stringify(roomTitles, null, 2));
       return {
         
         
@@ -40,17 +40,18 @@ import CustomCard from '@/components/Hero/CustomCard';
 
     return (
      
-      <section className="grid gap-4">
-      <h2 className="text-lg font-semibold"> Rooms</h2>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+     
+      <div className="min-h-full    grid md:grid-cols-2 lg:grid-cols-3  content-evenly  gap-16         ">
         {roomData?.name.map((room,index) => (
-          <div key={index}  className=" ">
+          <div key={index}  className="">
             
             <CustomCard title={room.title} rooms={room.rooms}/>
           </div>
+          
         ))}
+        
       </div>
-    </section>
+     
    
     )
     }

@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-
+import Image from 'next/image'
 import { ChevronRightCircle, Users } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import {
@@ -31,10 +31,21 @@ function CustomCard({title,rooms}:CategoryProps) {
   
   return (
    <div>
-       <Card className="font-medium p-4 h-64 w-56 flex items-start justify-between ">{title}
+       <Card className="  p-4  flex flex-col items-center justify-between rounded-3xl bg-slate-900 border border-emerald-400 ">
+        <div className='flex flex-col items-center justify-evenly w-56 h-64 space-x-2 md:mx-4  '>
+        <h1 className=' font-bold text-2xl text-emerald-300 tracking-tight'>{title}</h1>
+        <div className=' relative w-40 h-32'>
+        <Image className=' rounded-lg  '
+        src="https://static.vecteezy.com/system/resources/previews/002/214/642/non_2x/web-designer-and-programmer-free-vector.jpg"
+        alt='none'
+       fill={true}
+        />
+        </div>
+      </div>
+        
           <Dialog>
           <DialogTrigger asChild>
-            <ChevronRightCircle size={34} className=' self-end cursor-pointer'  onClick={() => setIsDialogOpen(!isDialogOpen)}/>
+            <ChevronRightCircle size={48} className='  self-end cursor-pointer hover:text-emerald-300  '  onClick={() => setIsDialogOpen(!isDialogOpen)}/>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>

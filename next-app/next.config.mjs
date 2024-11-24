@@ -4,7 +4,8 @@
 const nextConfig = {
   
     images: {
-      domains: ['assets.aceternity.com'], // Add the hostname here
+      domains: ['assets.aceternity.com','encrypted-tbn0.gstatic.com','static.vecteezy.com'], 
+      // Add the hostname here
     },
     reactStrictMode: false
   };
