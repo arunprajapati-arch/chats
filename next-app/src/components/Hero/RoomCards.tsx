@@ -2,6 +2,10 @@
 import React, { useState } from 'react'
 import client from "@/db"
 import CustomCard from '@/components/Hero/CustomCard';
+import { Card } from '../ui/card';
+import { PlusCircle } from 'lucide-react';
+import { Button } from '../ui/button';
+import CreateRoomCard from './CreateRoomCard';
 
  
   
@@ -41,15 +45,17 @@ import CustomCard from '@/components/Hero/CustomCard';
     return (
      
      
-      <div className="min-h-full    grid md:grid-cols-2 lg:grid-cols-3  content-evenly  gap-16         ">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3         ">
         {roomData?.name.map((room,index) => (
           <div key={index}  className="">
             
             <CustomCard title={room.title} rooms={room.rooms}/>
+            
           </div>
           
+          
         ))}
-        
+        <CreateRoomCard/>
       </div>
      
    

@@ -4,6 +4,8 @@ import { BotMessageSquare } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { signIn, signOut } from "next-auth/react"
 import UserImage from "./UserImage";
+import { Button } from "./ui/button";
+import Link from 'next/link';
 
 export default function Navbar(){
     const { data: session, status } = useSession();
@@ -20,7 +22,7 @@ export default function Navbar(){
 
             <div>
                
-    {session?(<UserImage/> ):(<button className="bg-emerald-300  p-4 py-2 rounded-md text-black font-semibold text-2xl shadow-md shadow-emerald-600 hover:bg-emerald-500" onClick={() => signIn()}>Login</button>)}
+    {session?(<div className="flex items-center justify-center gap-2"><Link href={"/dashboard"}><Button className="hidden md:block bg-emerald-300">Dashboard</Button></Link><UserImage/></div> ):(<button className="bg-emerald-300  p-4 py-2 rounded-md text-black font-semibold text-2xl shadow-md shadow-emerald-600 hover:bg-emerald-500" onClick={() => signIn()}>Login</button>)}
     
   </div>
 

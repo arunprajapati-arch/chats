@@ -3,6 +3,7 @@
 import ChatPage from '@/components/ChatPage/ChatPage';
 import Chat from '@/components/ChatPage/ChatPage';
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 const ChatsPage = () => {
   const searchParams = useSearchParams();
@@ -14,10 +15,12 @@ const ChatsPage = () => {
   }
 
   return (
+    
     <div>
       <ChatPage roomId={roomId}/>
     </div>
   );
+ 
 };
 
 export default ChatsPage;
