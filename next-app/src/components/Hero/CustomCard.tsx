@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { ChevronRightCircle, Users } from 'lucide-react';
+import { ChevronRightCircle, PlayCircle, Users } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import {
   Dialog,
@@ -28,24 +28,41 @@ interface CategoryProps {
 function CustomCard({title,rooms}:CategoryProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   
-  
+  const imageUrl = "https://files.prepinsta.com/2023/06/TCS-Digital-Coding-Question.webp"
   return (
-   <div>
-       <Card className="  p-4  flex flex-col items-center justify-between rounded-3xl bg-slate-900 border border-emerald-400 ">
-        <div className='flex flex-col items-center justify-evenly w-56 h-64 space-x-2 md:mx-4  '>
-        <h1 className=' font-bold text-2xl text-emerald-300 tracking-tight'>{title}</h1>
-        <div className=' relative w-40 h-32'>
-        <Image className=' rounded-lg  '
-        src="https://static.vecteezy.com/system/resources/previews/002/214/642/non_2x/web-designer-and-programmer-free-vector.jpg"
-        alt='none'
-       fill={true}
+   <div className='' >
+       <Card className="   w-full max-w-sm flex items-center flex-col gap-4  overflow-hidden transition-all hover:shadow-lg  bg-gradient-to-t from-emerald-700 to-emerald-300/10   ">
+       
+        
+        
+        
+        <img
+          alt={title}
+          className="object-cover w-full h-full ml-8 overflow-hidden transition-transform hover:scale-105 rounded-l-full"
+          height="200"
+          src={imageUrl}
+          style={{
+            aspectRatio: "300/200",
+            objectFit: "cover",
+            filter: "brightness(1.2) contrast(1.1)",
+          }}
+          width="300"
         />
-        </div>
-      </div>
+        
+       
+        <h1 className=' font-bold  text-3xl  text-emerald-50 tracking-tighter'>{title}</h1>
+      
         
           <Dialog>
           <DialogTrigger asChild>
-            <ChevronRightCircle size={48} className='  self-end cursor-pointer hover:text-emerald-300  '  onClick={() => setIsDialogOpen(!isDialogOpen)}/>
+            
+          <div className="flex w-full space-x-2 ">
+          <Button className="flex-1 bg-emerald-300 font-bold text-xl" variant="default" onClick={() => setIsDialogOpen(!isDialogOpen)}>            
+            Rooms
+            <ChevronRightCircle className="w-4 h-4 mr-2" />
+            </Button>
+            </div>
+            {/* <ChevronRightCircle size={48} className='  self-end cursor-pointer hover:text-emerald-300  '  onClick={() => setIsDialogOpen(!isDialogOpen)}/> */}
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
@@ -64,7 +81,7 @@ function CustomCard({title,rooms}:CategoryProps) {
                     </CardHeader>
                     <CardContent className="p-4 pt-0">
                       <Link href={`/chat?room=${encodeURIComponent(room.id)}`}>
-                      <Button className="w-full" onClick={() => console.log(`${room.name}`)}>
+                      <Button className="w-full bg-emerald-300" onClick={() => console.log(`${room.name}`)}>
                         Join Room
                       </Button>
                       </Link>
