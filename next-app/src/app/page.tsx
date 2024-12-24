@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <>
    
-   <div className=" w-full h-screen flex flex-col gap-8 md:p-12 bg-background  ">
+   <div className=" w-full h-screen flex flex-col  gap-8 md:p-12 bg-background  ">
     <Navbar/>
       <Hero/>
       

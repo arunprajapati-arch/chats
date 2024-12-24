@@ -12,11 +12,11 @@ async function Hero() {
   
   
   return (
-    <section className="   flex justify-center lg:justify-around gap-4 rounded-2xl bg-emerald-300/10 p-8  ">
+    <section className=" 2xl:h-screen flex items-center justify-center rounded-2xl bg-emerald-300/10 p-8   ">
      
-       <div><RoomCards/></div> 
+       <div className='w-full '><RoomCards/></div> 
              
-           <div className=' '><Leaderboard/> </div>  
+           {/* <div className=' '><Leaderboard/> </div>   */}
       
           
             </section>

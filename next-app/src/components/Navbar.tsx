@@ -12,7 +12,7 @@ export default function Navbar(){
 
 
     return(
-        <nav className="  flex items-center justify-between   bg-emerald-300/10 rounded-3xl h-24  p-8">
+        <nav className="  flex items-center justify-between   bg-emerald-300/10 rounded-3xl md:h-24 p-4 md:p-8">
             <div className=" flex items-center justify-center gap-2">
          <BotMessageSquare size={48} className=" text-emerald-300" />
          <h1 className="font-bold text-3xl tracking-tighter">Chats</h1>

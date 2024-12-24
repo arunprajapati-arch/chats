@@ -9,17 +9,20 @@ interface Message {
   isUser: boolean;
 }
 
+type Socket = WebSocket | null 
+
 interface ChatPageProps {
   roomId: string;
+  socket: Socket
 }
 
-function Chat({ roomId }: ChatPageProps) {
-  const socket = useSocket(roomId);
+function Chat({ roomId,socket }: ChatPageProps) {
+  
   const [input, setInput] = useState('');
   const [lastSent, setLastSent] = useState<number | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
 
-
+  
   
   useEffect(() => {
     if (!socket) return;

@@ -31,6 +31,14 @@ export class RoomManager {
         this.rooms.set(roomId, [...(this.rooms.get(roomId) ?? []), user]);
     }
 
+    public getUserIds(roomId:string){
+        const users = this.rooms.get(roomId);
+        if(!users) return;
+        return users.map(user => user.userId);
+    }
+
+   
+
     public broadcast(message: OutgoingMessage, user: User, roomId: string) {
         if (!this.rooms.has(roomId)) {
             return;

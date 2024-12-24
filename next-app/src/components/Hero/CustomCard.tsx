@@ -31,7 +31,7 @@ function CustomCard({title,rooms}:CategoryProps) {
   const imageUrl = "https://files.prepinsta.com/2023/06/TCS-Digital-Coding-Question.webp"
   return (
    <div className='' >
-       <Card className="   w-full max-w-sm flex items-center flex-col gap-4  overflow-hidden transition-all hover:shadow-lg  bg-gradient-to-t from-emerald-700 to-emerald-300/10   ">
+       <Card className=" w-72   max-w-sm border-0 flex items-center flex-col gap-4  overflow-hidden transition-all hover:shadow-lg  bg-gradient-to-t from-emerald-700 to-emerald-300/10   ">
        
         
         

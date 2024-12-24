@@ -54,14 +54,15 @@ export class User {
                     // }
                     // console.log("jouin receiverdfd 4")
                     this.roomId = roomId
+                    this.userId = userId
                     RoomManager.getInstance().addUser(roomId, this);
-                   
+
                     this.send({
                         type: "space-joined",
                         payload: {
-                            roomId:this.roomId,
-                            userId:this.userId,
-                            users: RoomManager.getInstance().rooms.get(roomId)?.filter(x => x.id !== this.id)?.map((u) => ({id: u.id})) ?? []
+                            roomId: this.roomId,
+                            userId: this.userId,
+                            users: RoomManager.getInstance().rooms.get(roomId)?.filter(x => x.id !== this.id)?.map((u) => ({ id: u.id })) ?? []
                         }
                     });
                     // console.log("jouin receiverdf5")
@@ -69,26 +70,33 @@ export class User {
                         type: "user-joined",
                         payload: {
                             userId: this.userId,
-                            
+
                         }
                     }, this, this.roomId!);
                     break;
                 case "chat":
-                   
-                   
-                       
-                        RoomManager.getInstance().broadcast({
-                            type: "chat",
+                    RoomManager.getInstance().broadcast({
+                        type: "chat",
+                        payload: {
+                            message: parsedData.payload.message
+                        }
+                    }, this, this.roomId!);
+                    break;
+             
+                case "getUsers":
+                    const userIds = RoomManager.getInstance().getUserIds(this.roomId!)
+                    if (userIds) {
+                        this.send({
+                            type: "users-list",
                             payload: {
-                               message: parsedData.payload.message
+                                roomId: this.roomId,
+                                users: userIds,
                             }
-                        }, this, this.roomId!);
-                        return;
-    
-                    
-                    
+                        });
+                    }
+                    break;
             }
-        });
+         });
     }
 
     destroy() {
